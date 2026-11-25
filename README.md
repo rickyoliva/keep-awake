@@ -33,16 +33,14 @@ bar, or just press `⌘⇧K` / click the status bar item.
 ### Make toggling passwordless
 
 `pmset -a disablesleep` needs root. Without help, macOS shows an administrator dialog on every
-change — the panel tells you so and prints this same snippet. Put this in
-`/etc/sudoers.d/keepawake` (owned by `root:wheel`, mode `0440`):
-
-```
-Cmnd_Alias KEEPAWAKE = /usr/bin/pmset -a disablesleep 0, /usr/bin/pmset -a disablesleep 1
-%admin ALL = (root) NOPASSWD: KEEPAWAKE
-```
+change — the panel tells you so and prints the same two lines:
 
 ```sh
-sudo install -m 0440 -o root -g wheel /path/to/definitely-this-file /etc/sudoers.d/keepawake
+sudo tee /etc/sudoers.d/keepawake >/dev/null <<'EOF'
+Cmnd_Alias KEEPAWAKE = /usr/bin/pmset -a disablesleep 0, /usr/bin/pmset -a disablesleep 1
+%admin ALL = (root) NOPASSWD: KEEPAWAKE
+EOF
+sudo chmod 0440 /etc/sudoers.d/keepawake
 ```
 
 The rule allows exactly two command lines, not `pmset` in general and not a shell. Validate it with
