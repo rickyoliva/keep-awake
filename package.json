@@ -1,0 +1,10 @@
+{
+  "name": "orca-keep-awake",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Type-checking only: Orca transpiles the plugin's files itself.",
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^7.0.2"
+  }
+}

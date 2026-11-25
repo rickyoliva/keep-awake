@@ -1,0 +1,53 @@
+{
+  "manifestVersion": 2,
+  "id": "keep-awake",
+  "name": "Keep Awake",
+  "version": "0.1.0",
+  "description": "Shows whether macOS system sleep is disabled, and toggles it from the sidebar or the status bar.",
+  "author": {
+    "name": "rickyoliva",
+    "url": "https://github.com/rickyoliva"
+  },
+  "repository": "https://github.com/rickyoliva/keep-awake",
+  "license": "MIT",
+  "engines": {
+    "orca": ">=1.4.248"
+  },
+  "execution": "trusted-worker",
+  "pluginApi": 1,
+  "main": "src/worker.ts",
+  "contributes": {
+    "panels": [
+      {
+        "id": "keep-awake",
+        "title": "Keep Awake",
+        "icon": "zap",
+        "entry": "src/panel.tsx",
+        "ui": "components"
+      }
+    ],
+    "statusBarItems": [
+      {
+        "id": "state",
+        "text": "Sleep ?",
+        "icon": "zap",
+        "tone": "neutral",
+        "tooltip": "Keep Awake: reading the current state",
+        "command": "keepawake.toggle"
+      }
+    ],
+    "commands": [
+      { "id": "keepawake.toggle", "title": "Keep Awake: Toggle system sleep" },
+      { "id": "keepawake.on", "title": "Keep Awake: Block system sleep" },
+      { "id": "keepawake.off", "title": "Keep Awake: Allow system sleep" },
+      { "id": "keepawake.refresh", "title": "Keep Awake: Refresh status" }
+    ],
+    "keybindings": [{ "command": "keepawake.toggle", "key": "Mod+Shift+K" }],
+    "events": [{ "on": "workspace.changed" }]
+  },
+  "capabilities": [
+    { "kind": "storage:own" },
+    { "kind": "notifications:show" },
+    { "kind": "workspace:read" }
+  ]
+}
