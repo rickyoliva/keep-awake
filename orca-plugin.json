@@ -2,7 +2,7 @@
   "manifestVersion": 2,
   "id": "keep-awake",
   "name": "Keep Awake",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Shows whether macOS system sleep is disabled, and toggles it from the sidebar or the status bar.",
   "author": {
     "name": "rickyoliva",
